@@ -1,0 +1,110 @@
+benchmark_filename:
+- train
+- valid
+- test
+cross_layer_num: 3
+dropout_prob: 0.2
+embedding_size: 32
+epochs: 100
+eval_batch_size: 4096
+expert_num: 4
+gpu_id: 3
+learning_rate: 0.1
+load_col:
+  group_by: user
+  inter:
+  - user_id
+  - item_id
+  - rating
+  - morning
+  - afternoon
+  - evening
+  - relative_HB_mean
+  - activity_intensity_mean
+  - activity_step_mean
+  - relative_HB_std
+  - activity_intensity_std
+  - activity_step_std
+  - still
+  - act2still
+  - walking
+  - none
+  - sleeping
+  - running
+  - weather_sunny
+  - weather_cloudy
+  - weather_rainy
+  - weather2
+  - weather3
+  - weather4
+  - GPS1
+  - GPS2
+  - GPS3
+  - timestamp
+  item:
+  - item_id
+  - popularity
+  - loudness
+  - danceability
+  - energy
+  - key
+  - speechiness
+  - acousticness
+  - instrumentalness
+  - valence
+  - tempo
+  - general_genre_id
+  - duration
+  - F0final_sma_amean
+  - F0final_sma_stddev
+  - audspec_lengthL1norm_sma_stddev
+  - pcm_RMSenergy_sma_stddev
+  - pcm_fftMag_psySharpness_sma_amean
+  - pcm_fftMag_psySharpness_sma_stddev
+  - pcm_zcr_sma_amean
+  - pcm_zcr_sma_stddev
+  user:
+  - user_id
+low_rank: 128
+metrics:
+- AUC
+- MAE
+- RMSE
+- LogLoss
+mlp_hidden_size:
+- 256
+normalize_all: true
+numerical_features:
+- morning
+- afternoon
+- evening
+- relative_HB_mean
+- activity_intensity_mean
+- activity_step_mean
+- relative_HB_std
+- activity_intensity_std
+- activity_step_std
+- still
+- act2still
+- walking
+- none
+- sleeping
+- running
+- weather_sunny
+- weather_cloudy
+- weather_rainy
+- weather2
+- weather3
+- weather4
+- GPS1
+- GPS2
+- GPS3
+reg_weight: 2
+sample_num: 1
+seed: 110
+stopping_step: 50
+threshold:
+  rating: 3
+train_batch_size: 500
+train_neg_sample_args: null
+valid_metric: AUC

@@ -1,0 +1,58 @@
+benchmark_filename:
+- train
+- valid
+- test
+dropout_prob: 0.1
+embedding_size: 128
+epochs: 100
+eval_batch_size: 4096
+gpu_id: 3
+learning_rate: 0.3
+load_col:
+  group_by: user
+  inter:
+  - user_id
+  - item_id
+  - rating
+  - timestamp
+  item:
+  - item_id
+  - popularity
+  - loudness
+  - danceability
+  - energy
+  - key
+  - speechiness
+  - acousticness
+  - instrumentalness
+  - valence
+  - tempo
+  - general_genre_id
+  - duration
+  - F0final_sma_amean
+  - F0final_sma_stddev
+  - audspec_lengthL1norm_sma_stddev
+  - pcm_RMSenergy_sma_stddev
+  - pcm_fftMag_psySharpness_sma_amean
+  - pcm_fftMag_psySharpness_sma_stddev
+  - pcm_zcr_sma_amean
+  - pcm_zcr_sma_stddev
+  user:
+  - user_id
+metrics:
+- AUC
+- MAE
+- RMSE
+- LogLoss
+mlp_hidden_size:
+- 8
+normalize_all: true
+sample_num: 1
+seed: 110
+stopping_step: 50
+threshold:
+  rating: 3
+train_batch_size: 100
+train_neg_sample_args: null
+valid_metric: AUC
+weight_decay: 0.001

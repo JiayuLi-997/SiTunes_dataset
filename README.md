@@ -1,2 +1,2 @@
-# Situ-Music_dataset
-Open source for Situ-Music,  a situational music recommendation feedback dataset with Physiological and Psychological signals.
+# SiTunes_dataset
+Open source for SiTunes,  a situational music recommendation feedback dataset with Physiological and Psychological signals.

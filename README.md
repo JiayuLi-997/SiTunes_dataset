@@ -9,6 +9,8 @@ This repository is the open source for *SiTunes*,  a situational music recommend
 An illustration of the data collection process is shown below.
 
 
+![Data Collection Process](./log/_static/Experiment_flow.png)
+
 
 ### Basic Statistics
 

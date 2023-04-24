@@ -14,6 +14,13 @@ An illustration of the data collection process is shown below.
 
 ### Basic Statistics
 
+|         | #User | #Item | #Interaction | Phy. Signals | Psy. Signals | Rating | Psy. Feedback |
+|---------|-------|-------|--------------|:------------:|:------------:|:------:|:-------------:|
+| Stage 1 | 30    | 25    | 600          |              |       √      |    √   |       √       |
+| Stage 2 | 30    | 105   | 897          |       √      |       √      |    √   |       √       |
+| Stage 3 | 10    | 217   | 509          |       √      |       √      |    √   |       √       |
+| All     | 30    | 307   | 2,006        |       √      |       √      |    √   |       √       |
+
 ## Experiments
 we propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.
 Details about the codes and configs of the experiments are shown in ``Experiments\``.

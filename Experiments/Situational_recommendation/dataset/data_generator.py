@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# # Build the dataset splits for all 3 stages 
-
-# In[1]:
-
-
 import os
 import json
 import gzip
@@ -16,11 +10,7 @@ import numpy as np
 import itertools
 from datetime import datetime
 
-
-# In[2]:
-
-
-dataset_dir = "/SiTunes_dataset/SiTunes"
+dataset_dir = "../../../SiTunes"
 
 lab_study_dir = dataset_dir + "/Stage1"
 field_study_dir = dataset_dir +"/Stage2"
@@ -29,28 +19,12 @@ music_dir = dataset_dir + "/music_metadata"
 
 
 # ## Field study (Stage 2)
-
 # ### interractions file
-
-# In[3]:
-
-
 interactions = pd.read_csv(os.path.join(field_study_dir, "interactions.csv"))
 inter_df = interactions[['inter_id', 'user_id', 'item_id', 'timestamp', 'rating', 
                          'emo_pre_valence', 'emo_pre_arousal', 'emo_post_valence', 
-                         'emo_post_arousal']]
-                         
-                         
-
-
-# In[4]:
-
-
+                         'emo_post_arousal']]                                
 inter_df.head()
-
-
-# In[5]:
-
 
 #Loading the bracelet data 
 bracelet = json.load(open(os.path.join(field_study_dir,"env.json")))
@@ -58,24 +32,11 @@ d = pd.DataFrame.from_dict(bracelet).T.reset_index()
 d.columns = ["inter_id", "time", "weather", "GPS"]
 d['inter_id'] = d['inter_id'].astype(int)
 inter_df = inter_df.merge(d, on=["inter_id"], how="inner")
-
-
-# In[6]:
-
-
 inter_df.head()
-
-
-# In[7]:
-
 
 #Loading the wrist data
 wrist_data = np.load(os.path.join(field_study_dir,"wrist.npy"))
 item = wrist_data[0]
-
-
-# In[8]:
-
 
 feature_columns_AT = []
 feature_columns_av = []
@@ -101,23 +62,12 @@ for item in wrist_data:
     dominant_activity_types.append(fourth_column_mode)
 
 
-# In[9]:
-
-
 means_df = pd.DataFrame(feature_columns_av, columns=['relative_HB_mean', 'activity_intensity_mean', 'activity_step_mean'])
 stds_df = pd.DataFrame(feature_columns_std, columns=['relative_HB_std', 'activity_intensity_std', 'activity_step_std'])
 act_type_df = pd.DataFrame(dominant_activity_types, columns=['activity_type'])
 inter_df = pd.concat([inter_df, means_df, stds_df, act_type_df], axis=1)
 
-
-# In[10]:
-
-
 inter_df.head()
-
-
-# In[11]:
-
 
 # Split the "weather" and "GPS" columns into separate columns
 inter_df[['weather1', 'weather2', 'weather3', 'weather4']] = pd.DataFrame(inter_df['weather'].to_list(), index=inter_df.index)
@@ -125,10 +75,6 @@ inter_df[['GPS1', 'GPS2', 'GPS3']] = pd.DataFrame(inter_df['GPS'].to_list(), ind
 inter_df.drop('weather', axis=1, inplace=True)
 inter_df.drop('GPS', axis=1, inplace=True)
 inter_df.head()
-
-
-# In[12]:
-
 
 #One-hot encode the weather1 column
 encoded_weather = pd.get_dummies(inter_df['weather1'], prefix='weather1')
@@ -157,10 +103,6 @@ inter_df.insert(insert_index, 'running', 0)
 
 inter_df = inter_df.drop('activity_type', axis=1)
 
-
-# In[13]:
-
-
 #One-hot encode the time column
 encoded_time = pd.get_dummies(inter_df['time'], prefix='time')
 
@@ -174,28 +116,16 @@ for idx, column_name in enumerate(encoded_time.columns[::-1]):
     
 inter_df = inter_df.drop('time', axis=1)
 
-
-# In[14]:
-
-
 print(inter_df.columns)
 print(inter_df.isnull().values.any())
 
 
 # ### User file
-
-# In[15]:
-
-
 user_df = pd.DataFrame({'user_id': range(1, 31)})
 user_df.head()
 
 
 # ### Items file
-
-# In[16]:
-
-
 music_features = pd.read_csv(os.path.join(music_dir,"music_info.csv"))
 #music_features.rename(columns={"i_id_c":"music_id"},inplace=True)
 
@@ -206,20 +136,12 @@ all_items = set(useful_meta_df['item_id'].values.tolist())
 #Dropping general_genre column because it has the same info as the general_genre_id
 useful_meta_df.drop('general_genre', axis=1, inplace=True)
 
-
-# In[17]:
-
-
 print(useful_meta_df.isnull().values.any())
 print(useful_meta_df.columns)
 useful_meta_df.head()
 
 
 # ### Transform to RecBole format
-
-# In[18]:
-
-
 temp_out_df = inter_df.rename(columns={'user_id':'user_id:token', 'item_id': 'item_id:token', 
                                          'rating':'rating:float','timestamp':'timestamp:float',
                                          
@@ -266,22 +188,10 @@ out_df = temp_out_df[['user_id:token', 'item_id:token', 'rating:float',
 out_df = out_df.drop_duplicates()
 out_df = out_df.sort_values(by=['user_id:token'], kind='mergesort').reset_index(drop=True)
 
-
-# In[19]:
-
-
 print(len(out_df))
-
-
-# In[20]:
-
 
 user_out_df = user_df.rename(columns={'user_id':'user_id:token'})
 user_out_df.head()
-
-
-# In[21]:
-
 
 item_out_df = useful_meta_df.rename(columns={'item_id':'item_id:token', 'popularity':'popularity:token',
                                              'loudness':'loudness:float', 'danceability':'danceability:float',
@@ -310,17 +220,10 @@ item_out_df = item_out_df.drop_duplicates()
 item_out_df = item_out_df.sort_values(by=['item_id:token'], kind='mergesort').reset_index(drop=True)
 item_out_df['item_id:token'] = item_out_df['item_id:token'].astype(int)
 
-
-# In[22]:
-
-
 print(item_out_df.columns)
 
 
 # ### Randomly split for 10 seeds and save files from stage 2 everywhere
-
-# In[23]:
-
 
 # Define the split ratios
 train_ratio = 0.7
@@ -395,15 +298,7 @@ for seed in range(101, 111):
 
     print(f"DataFrames saved for seed {seed}")
 
-
-# In[24]:
-
-
 #Saving user and item files everywhere
-
-
-# In[25]:
-
 
 for seed in range(101, 111):
     #No case specifications means case2
@@ -433,16 +328,10 @@ for seed in range(101, 111):
 
 # ## Online study (Stage 3)
 
-# In[26]:
-
-
 online_inter = pd.read_csv(os.path.join(online_study_dir, "interactions.csv"))
 online_inter_df = online_inter[['inter_id', 'user_id', 'item_id', 'timestamp', 'rating',
                                'emo_pre_valence', 'emo_pre_arousal', 'emo_post_valence', 
                                 'emo_post_arousal']]
-
-
-# In[27]:
 
 
 #Loading the bracelet data 
@@ -452,22 +341,10 @@ e.columns = ["inter_id", "time", "weather", "GPS"]
 e['inter_id'] = e['inter_id'].astype(int)
 online_inter_df = online_inter_df.merge(d, on=["inter_id"], how="inner")
 
-
-# In[28]:
-
-
 print(len(online_inter_df))
-
-
-# In[29]:
-
 
 #Loading the wrist data
 online_wrist_data = np.load(os.path.join(online_study_dir,"wrist.npy"), allow_pickle=True)
-
-
-# In[30]:
-
 
 #encode wrist data activity_type field 
 encoding_rules = {'still': 0, 'act2still': 1, 'none': 3, 'running': 5, 'sleep': 4, 'walking': 2}
@@ -476,16 +353,6 @@ encoded_wrist_data = online_wrist_data.copy()
 for activity, code in encoding_rules.items():
     encoded_wrist_data[..., 3] = np.where(online_wrist_data[..., 3] == activity, code, encoded_wrist_data[..., 3])
 wrist_data = encoded_wrist_data
-
-
-# In[31]:
-
-
-print(encoded_wrist_data[2][0])
-
-
-# In[32]:
-
 
 feature_columns_AT = []
 feature_columns_av = []
@@ -516,15 +383,7 @@ online_means_df = pd.DataFrame(feature_columns_av, columns=['relative_HB_mean', 
 online_stds_df = pd.DataFrame(feature_columns_std, columns=['relative_HB_std', 'activity_intensity_std', 'activity_step_std'])
 online_act_type_df = pd.DataFrame(dominant_activity_types, columns=['activity_type'])
 
-
-# In[33]:
-
-
 online_inter_df = pd.concat([online_inter_df, online_means_df, online_stds_df, online_act_type_df], axis=1)
-
-
-# In[34]:
-
 
 # Split the "weather" and "GPS" columns into separate columns
 online_inter_df[['weather1', 'weather2', 'weather3', 'weather4']] = pd.DataFrame(online_inter_df['weather'].to_list(), index=online_inter_df.index)
@@ -532,9 +391,6 @@ online_inter_df[['GPS1', 'GPS2', 'GPS3']] = pd.DataFrame(online_inter_df['GPS'].
 online_inter_df.drop('weather', axis=1, inplace=True)
 online_inter_df.drop('GPS', axis=1, inplace=True)
 online_inter_df.head()
-
-
-# In[35]:
 
 
 #One-hot encode the weather1 column
@@ -548,21 +404,9 @@ for idx, column_name in enumerate(encoded_weather.columns[::-1]):
     online_inter_df.insert(insert_position, column_name, encoded_weather[column_name])
     
 online_inter_df = online_inter_df.drop('weather1', axis=1)
-
-
-# In[36]:
-
-
 online_inter_df.head()
 
-
-# In[37]:
-
-
 print(online_inter_df.columns)
-
-
-# In[38]:
 
 
 #One-hot encode the activity_type column
@@ -590,34 +434,19 @@ for idx, column_name in enumerate(encoded_time.columns[::-1]):
     
 online_inter_df = online_inter_df.drop('time', axis=1)
 
-
-# In[39]:
-
-
 print(online_inter_df.columns)
 print(inter_df.isnull().values.any())
-
-
-# In[40]:
 
 
 #Only retain items that appear in interaction data
 online_useful_meta_df = music_features[music_features['item_id'].isin(online_inter_df['item_id'])].reset_index(drop=True)
 all_items = set(online_useful_meta_df['item_id'].values.tolist())
 
-
-# In[41]:
-
-
 print(len(online_useful_meta_df))
 online_useful_meta_df.head()
 
 
 # ### Transform to recbole format
-
-# In[42]:
-
-
 online_out_df = online_inter_df.rename(columns={'user_id':'user_id:token', 'item_id': 'item_id:token', 
                                          'rating':'rating:float','timestamp':'timestamp:float',
                                          
@@ -661,19 +490,11 @@ online_out_df = online_out_df.drop_duplicates()
 online_out_df = online_out_df.sort_values(by=['user_id:token'], kind='mergesort').reset_index(drop=True)
 
 
-# In[43]:
-
-
 online_out_df.columns
-
-
-# In[44]:
 
 
 len(online_out_df)
 
-
-# In[45]:
 
 
 online_item_out_df = online_useful_meta_df.rename(columns={'item_id':'item_id:token', 'popularity':'popularity:token',
@@ -704,18 +525,12 @@ online_item_out_df = online_item_out_df.sort_values(by=['item_id:token'], kind='
 online_item_out_df['item_id:token'] = online_item_out_df['item_id:token'].astype(int)
 
 
-# In[46]:
-
 
 print(len(online_item_out_df))
 online_item_out_df.head()
 
 
 # ### Save across 10 seeds in case3 folders as a test split
-
-# In[47]:
-
-
 # Iterate through the random seeds
 for seed in range(101, 111):
     # Set the random seed for reproducibility
@@ -732,9 +547,6 @@ for seed in range(101, 111):
 
 # ## Lab study (Stage 1)
 
-# In[48]:
-
-
 lab_inter = pd.read_csv(os.path.join(lab_study_dir, "interactions.csv"))
 lab_inter_df = lab_inter[['user_id', 'item_id', 'timestamp', 'rating',
                          'emo_valence', 'emo_arousal']]
@@ -744,37 +556,19 @@ inter_id_column = range(1, len(lab_inter_df) + 1)
 lab_inter_df.insert(insert_index, 'inter_id', inter_id_column)
 
 
-# In[49]:
-
-
 print(len(lab_inter_df))
 
-
-# In[50]:
-
-
 lab_inter_df.head()
-
-
-# In[51]:
-
 
 #Only retain items that appear in interaction data
 lab_useful_meta_df = music_features[music_features['item_id'].isin(lab_inter_df['item_id'])].reset_index(drop=True)
 all_items = set(online_useful_meta_df['item_id'].values.tolist())
-
-
-# In[52]:
-
 
 print(len(lab_useful_meta_df))
 lab_useful_meta_df.head()
 
 
 # ### Transform to RecBole format
-
-# In[53]:
-
 
 lab_out_df = lab_inter_df.rename(columns={'user_id':'user_id:token', 'item_id': 'item_id:token', 
                                          'rating':'rating:float','timestamp':'timestamp:float',
@@ -785,21 +579,9 @@ lab_out_df = lab_out_df[['user_id:token', 'item_id:token', 'rating:float','times
 lab_out_df = lab_out_df.drop_duplicates()
 lab_out_df = lab_out_df.sort_values(by=['user_id:token'], kind='mergesort').reset_index(drop=True)
 
-
-# In[54]:
-
-
 lab_out_df.head()
 
-
-# In[55]:
-
-
 print(lab_out_df)
-
-
-# In[56]:
-
 
 lab_item_out_df = lab_useful_meta_df.rename(columns={'item_id':'item_id:token', 'popularity':'popularity:token',
                                              'loudness':'loudness:float', 'danceability':'danceability:float',
@@ -829,17 +611,11 @@ lab_item_out_df = lab_item_out_df.sort_values(by=['item_id:token'], kind='merges
 lab_item_out_df['item_id:token'] = lab_item_out_df['item_id:token'].astype(int)
 
 
-# In[57]:
-
-
 print(len(lab_item_out_df))
 lab_item_out_df.head()
 
 
 # ### Randomly split into train and valid and save over 10 seeds into case1 folders
-
-# In[58]:
-
 
 # Define the split ratios
 train_ratio = 0.8
@@ -884,10 +660,3 @@ for seed in range(101, 111):
     val_df.to_csv(os.path.join(folder_name, val_filename), index=False, sep='\t')
 
     print(f"DataFrames saved for seed {seed}")
-
-
-# In[ ]:
-
-
-
-

@@ -20,7 +20,7 @@ from datetime import datetime
 # In[2]:
 
 
-dataset_dir = "/work/vadhim/public_github/SiTunes_dataset/SiTunes"
+dataset_dir = "/SiTunes_dataset/SiTunes"
 
 lab_study_dir = dataset_dir + "/Stage1"
 field_study_dir = dataset_dir +"/Stage2"

@@ -55,7 +55,7 @@ n_layers: 1
 normalize_all: true
 num_heads: 2
 sample_num: 1
-seed: 109
+seed: 110
 stopping_step: 50
 threshold:
   rating: 3

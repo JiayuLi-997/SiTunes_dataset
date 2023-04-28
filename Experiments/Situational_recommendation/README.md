@@ -37,7 +37,7 @@ To run the experiment, follow these steps:
 
 1. Choose a desired model and setting (also consider with/without situation).
 2. Find the correspondig config file.
-3. For each run, select the appropriate dataset and modify the seed in the corresponding config file according to the selected model over 10 random seeds [101,110]
+3. For each run, select the appropriate dataset and modify the seed in the corresponding config file according to the selected model over 10 random seeds [101,110].
 4. Take the average result of each evaluation metric produced as output of the 10 runs.
 
 Please make sure to update the dataset path and the config file path in your RecBole experiment commands accordingly.

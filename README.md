@@ -24,3 +24,11 @@ An illustration of the data collection process is shown below.
 ## Experiments
 we propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.
 Details about the codes and configs of the experiments are shown in ``Experiments\``.
+
+### Situational music recommendation
+Integrating physiological and environmental situations, such as weather and activities, enables the design of recommenders that adapt to users' preference shifts in situations. 
+For instance, a recommender system can suggest different music when the user is exercising on a sunny day or relaxing at home during a rainstorm.
+Here we conducted preliminary experiments with *SiTunes* to explore how it can help with situational music recommendation.
+
+
+

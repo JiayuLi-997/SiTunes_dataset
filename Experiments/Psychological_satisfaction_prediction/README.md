@@ -36,7 +36,7 @@ For dataset split, we follow the second and third settings in Section ``SiTunes\
 We adopt accuracy (Acc.), Macro F1 score, Macro Average Precision score (Macro AP), and Micro Average Precision score (Micro AP) as evaluation metrics. We implemented all models with the Scikit-learn toolkit, and tuned the hyper-parameters to find results with the highest accuracy on the validation set. 
 
 Results for the psychological satisfaction prediction task, i.e., mood~(valence) change classification of all three situation combinations in two settings. 
-The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. vs. Sub. and Sub. vs. Obj.+Sub. `*`/`**` indicates p-value<0.05/0.01, and the best results are shown in **bold**.
+The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. vs. Sub. and Sub. vs. Obj.+Sub. \*/*\* indicates p-value<0.05/0.01, and the best results are shown in **bold**.
 
 ![Experiments results situation](/log/_static/Psychological_satisfaction_prediction_task.png)
 

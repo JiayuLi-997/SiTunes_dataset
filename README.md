@@ -67,3 +67,20 @@ The limited scale of our dataset may cause AutoInt and DCN V2 to not have outsta
 However, these methods are all used for general context-aware recommendation, and we believe models designed explicitly for situational recommendation will lead to better performance in the future,
 suggesting that our dataset might not be sufficiently large to exploit the capabilities of advanced machine learning methods fully. 
 We believe that a larger dataset with rich context and situational information could better support these methods and yield more insightful results.
+
+### Psychological Satisfaction as Recommendation Feedback
+
+As music can convey emotions and change emotions of listeners, music recommendation should pay attention to psychological satisfaction besides preference matching.
+The analysis in the Figure indicates that emotions and emotion changes are closely related to but also different from users' rating preference.
+Therefore, psychological satisfaction should be taken as a stand-alone measure for music recommendation.
+With our dataset, Situ-Music, we take a first step to achieve users' psychological satisfaction in music by an example verification task, emotion change prediction.
+
+Prediction results of all three situation combinations in two settings are shown in the table below.
+The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. $v.s.$ Sub. and Sub. $v.s.$ Obj.+Sub.
+*/** indicates p-value<0.05/0.01, and the best results are shown in \textbf{bold}.
+
+
+Comparing results with different kinds of situation features, we find that Obj. situation helps predict mood changes after music listening, as the results are better than random predictions.
+Classification results with Sub. situations are significantly better than objective ones, which confirms the close relationship between users' emotion before and after music listening, and shows the importance of collecting psychological signals.
+Finally, Obj. + Sub. situation features achieve the best results on Stage 2, but not Stage 3.
+The reason might be that the models are trained on Stage 2 data, and Obj. features are effective indicators for datasets with the same distribution as training set, but not as effective as Sub. features for out-of-distribution inference.

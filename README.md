@@ -50,7 +50,9 @@ In experiments, we adopted the popular RecBole framework to implement and evalua
 
 The results of the experiments are shown below 
 
-![Experiments results](./log/_static/Situational_recommendation_experiments_results.png)
+![Experiments results situation](./log/_static/Situational_recommendation_experiments_results.png)
+
+Relative t-test is conducted between situations for the same model with */** for p-value<0.05/0.01. The best results in each setting and model are shown in **bold**.
 
 The experimental results presented in the table offer compelling evidence for the importance of situational information in recommender systems. Comparing with recommendation results without situation, significant performance improvements are achieved for almost all metrics for all models when situational data is incorporated. Therefore, the situational information provided in *SiTunes* is significantly helpful for music recommendation tasks.
 
@@ -76,9 +78,11 @@ Therefore, psychological satisfaction should be taken as a stand-alone measure f
 With our dataset, Situ-Music, we take a first step to achieve users' psychological satisfaction in music by an example verification task, emotion change prediction.
 
 Prediction results of all three situation combinations in two settings are shown in the table below.
-The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. $v.s.$ Sub. and Sub. $v.s.$ Obj.+Sub.
-*/** indicates p-value<0.05/0.01, and the best results are shown in \textbf{bold}.
 
+![Experiments results satisfaction](./log/_static/Psychological_satisfaction_prediction_task.png)
+
+The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. $v.s.$ Sub. and Sub. $v.s.$ Obj.+Sub.
+*/** indicates p-value<0.05/0.01, and the best results are shown in **bold**.
 
 Comparing results with different kinds of situation features, we find that Obj. situation helps predict mood changes after music listening, as the results are better than random predictions.
 Classification results with Sub. situations are significantly better than objective ones, which confirms the close relationship between users' emotion before and after music listening, and shows the importance of collecting psychological signals.

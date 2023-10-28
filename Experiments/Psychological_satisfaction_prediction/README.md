@@ -20,7 +20,7 @@ With our dataset *SiTunes*, we take the first step to understand users’ psycho
 
 As an initial exploration, we define the psychological satisfaction prediction as a classification task: Given user ID, music metadata, and situations, we aim to predict if users' emotions will lift, drop or keep after music listening.
 
-For classification ground truth labels, we select to predict the changes in the valence dimension, since positive valence usually indicates psychological satisfaction, while arousal is not always consistent with satisfaction. The dividing point between emotion lifting, keeping, and dropping is ±0.125, following the settings in Figure X. 0.125 is chosen since it is half a grid in the two-dimensional diagram used for participants' annotation. We consider such an interval to be distinguishable to the participants.
+For classification ground truth labels, we select to predict the changes in the valence dimension, since positive valence usually indicates psychological satisfaction, while arousal is not always consistent with satisfaction. The dividing point between emotion lifting, keeping, and dropping is ±0.125, 0.125 is chosen since it is half a grid in the two-dimensional diagram used for participants' annotation. We consider such an interval to be distinguishable to the participants.
 
 Three different feature combinations are applied as the situation information during the experiments. 
 1. The first is *Objective* (Obj.), which utilizes all objective information as situation features, including time, weather, location, and physiological features collected. The features and pre-process strategies are the same as in Section ``SiTunes\Experiments\Situational_recommendation``.

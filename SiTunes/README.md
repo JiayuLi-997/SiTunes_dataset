@@ -18,14 +18,28 @@ We describe the format and meaning of all data provided in each stage as follows
 
 **env.json**
 - Format: ``{inter_id:{'time': time_period, 'weather':[weather type, pressure, temperature, humidity], 'GPS': [longitude, latitude, speed] } }``
-- ``time_period`` devide time of day into 3 periods. ``weather type`` is 0 for Sunny, 1 for Cloudy, and 2 for Rainy.
-- ``longitude`` and ``latitude`` are both re-scaled for privacy protection.
+- `time_period`: Represents different times of day, encoded as follows:
+  - `1`: 8 a.m. - 12 p.m.
+  - `2`: 12 p.m. - 6 p.m.
+  - `3`: 6 p.m. - 2 a.m.
+  - *Note*: No records are collected during 2 a.m. to 8 a.m.
+- `weather_type`: Indicates the type of weather, categorized as:
+  - `0`: Sunny
+  - `1`: Cloudy
+  - `2`: Rainy
+ - ``longitude`` and ``latitude`` are both re-scaled for privacy protection.
 
 **wrist.npy**
 - Format: ``[heart rate, activity intensity, activity step, activity type]``
 - A matrix of size ``30 x 4`` is aligned to each record with record id ``inter_id``
 - ``heart rate`` is normalized for each user for privacy protection.
-- ``activity type`` is encoded into ids with 0 for still, 1 for act2still, 2 for walking, 3 for missing type, 4 for lying, and 5 for running.
+- ``activity type`` is encoded by:
+  - `0`: Still (User is stationary)
+  - `1`: Act2Still (Transition from activity to stillness)
+  - `2`: Walking
+  - `3`: Missing Type (Activity type is not recorded or unavailable)
+  - `4`: Lying (User is lying down)
+  - `5`: Running
 
 ### Stage 3
 **interactions.csv**

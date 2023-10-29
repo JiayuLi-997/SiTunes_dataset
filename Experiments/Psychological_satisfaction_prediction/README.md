@@ -33,7 +33,7 @@ Four classical classifiers are adopted as baseline models for the experiment, in
 
 For dataset split, we follow the second and third settings in Section ``SiTunes\Experiments\Situational_recommendation`` for situational music recommendation to evaluate the offline and online performance on the emotion prediction task, respectively. In each setting, we repeat the experiments 10 times and report the average results on the test set. The first setting in Section ``SiTunes\Experiments\Situational_recommendation`` is unavailable for this task because users' emotions ahead of music listening are unavailable in Stage 1.
 
-We adopt accuracy (Acc.), Macro F1 score, Macro Average Precision score (Macro AP), and Micro Average Precision score (Micro AP) as evaluation metrics. We implemented all models with the Scikit-learn toolkit, and tuned the hyper-parameters to find results with the highest accuracy on the validation set. 
+We adopt accuracy (Acc.), Macro F1 score, Macro Average Precision score (Macro AP), and Micro Average Precision score (Micro AP) as evaluation metrics. We implemented all models with the Scikit-learn toolkit [1], and tuned the hyper-parameters to find results with the highest accuracy on the validation set. 
 
 Results for the psychological satisfaction prediction task, i.e., mood~(valence) change classification of all three situation combinations in two settings. 
 The relative t-test is conducted between adjacent situations of the same model, i.e., Obj. vs. Sub. and Sub. vs. Obj.+Sub. \*/*\* indicates p-value<0.05/0.01, and the best results are shown in **bold**.
@@ -43,4 +43,7 @@ The relative t-test is conducted between adjacent situations of the same model, 
 ### Experimental Results
 
 Comparing results with different kinds of situation features, we find that Obj. situation helps predict mood changes after music listening, as the results are better than random predictions. Classification results with Sub. situations are significantly better than objective ones, which confirms the close relationship between users' emotion before and after music listening, and shows the importance of collecting psychological signals. Finally, Obj. + Sub. situation features achieve the best results on Stage 2, but not Stage 3. The reason might be that the models are trained on Stage 2 data, and Obj. features are effective indicators for datasets with the same distribution as training set, but not as effective as Sub. features for out-of-distribution inference.
+
+# References 
+[1] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. 2011. Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research 12 (2011), 2825–2830.
 

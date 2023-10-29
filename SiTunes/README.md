@@ -8,7 +8,7 @@ We describe the format and meaning of all data provided in each stage as follows
 **interactions.csv**
 - Format: ``user_id, item_id, No., timestamp, rating, duration, emo_valence, emo_arousal``
 - The ``No.`` column is numbered separately for each user from 1 to 20.
-- ``rating`` is five-point Likert scalre. ``emo_valence`` and ``emo_arousal`` are emotions after music listening in two dimensions (range: [-1,1]).
+- ``rating`` is five-point Likert scale. ``emo_valence`` and ``emo_arousal`` are emotions after music listening in two dimensions (range: [-1,1]).
 
 ### Stage 2
 **interactions.csv**
@@ -30,7 +30,7 @@ We describe the format and meaning of all data provided in each stage as follows
 ### Stage 3
 **interactions.csv**
 - Format: ``inter_id, user_id, item_id, timestamp, rating, preference, emo_pre_valence, emo_pre_arousal, emo_post_valence, emo_post_arousal, duration, rec_type``
-- ``rating`` is five-point Likert scalre. ``preference`` is a continous bar for preference in range [0,100],
+- ``rating`` is five-point Likert scale. ``preference`` is a continous bar for preference in range [0,100],
 
 **env.json & wrist.npy**
 - The format and meaning is the same as in Stage 2.

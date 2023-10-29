@@ -35,6 +35,9 @@ Rating distributions throughout three stages of the study:
 Distributions of emotional valence and arousal throughout three stages of user study:
 ![Emotional Valence Arousal Distributions](./log/_static/Emo_distributions.png)
 
+Distributions of weather, activity type and time of day in Stage 2 and Stage 3: 
+![Situations Distributions](./log/_static/Situations_distributions.png)
+
 ## Experiments
 We propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.
 Details about code, configs and settings of the experiments are shown in [`Experiments\`](/Experiments/).

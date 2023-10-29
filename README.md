@@ -2,7 +2,7 @@
 This repository is the open source for *SiTunes*,  a situational music recommendation feedback dataset with Physiological and Psychological signals.
 
 ## Dataset Introduction
-*SiTunes* is a music recommendation dataset that contains rich physiological situation information and psychological feedback signals based on a real-world user study. Data and explanations about the dataset are detailed in ``SiTunes\``.
+*SiTunes* is a music recommendation dataset that contains rich physiological situation information and psychological feedback signals based on a real-world user study. Data and explanations about the dataset are detailed in [`SiTunes\`](/SiTunes/).
 
 ### Collection Process
 *SiTunes* is collected with a three-stage user study, which includes a lab study to collect users’ inherent preference (Stage 1), and two field studies to record situations, preference, and psychological feedback in users’ daily life with traditional recommenders (Stage 2) and situational recommenders (Stage 3).
@@ -23,7 +23,7 @@ An illustration of the data collection process is shown below.
 
 ## Experiments
 We propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.
-Details about code, configs and settings of the experiments are shown in ``Experiments\``.
+Details about code, configs and settings of the experiments are shown in [`Experiments\`](/Experiments/).
 
 ### Situational music recommendation
 Integrating physiological and environmental situations, such as weather and activities, enables the design of recommenders that adapt to users' preference shifts in situations. 
@@ -54,6 +54,8 @@ Performance in Setting 3 is also worse than in Setting 2.
 The performance decrease may be caused by the distribution discrepancy between Stage 2 and Stage 3 with different backbone recommenders. 
 Nevertheless, it worth noting that they are not so comparable as the test sets are distinct.
 
+More details about the experiment settings and result analysis are shown in [`Experiments\Situational_recommendation\`](/Experiments/Situational_recommendation).
+
 ### Psychological Satisfaction as Recommendation Feedback
 
 As music can convey emotions and change emotions of listeners, music recommendation should pay attention to psychological satisfaction besides preference matching.
@@ -77,3 +79,5 @@ Comparing results with different kinds of situation features, we find that Obj. 
 Classification results with Sub. situations are significantly better than objective ones, which confirms the close relationship between users' emotion before and after music listening, and shows the importance of collecting psychological signals.
 Finally, Obj. + Sub. situation features achieve the best results on Stage 2, but not Stage 3.
 The reason might be that the models are trained on Stage 2 data, and Obj. features are effective indicators for datasets with the same distribution as training set, but not as effective as Sub. features for out-of-distribution inference.
+
+More details about the experiment settings and result analysis are shown in [`Experiments\Psychological_satisfaction_prediction\`](/Experiments/Psychological_satisfaction_prediction).

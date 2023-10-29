@@ -29,6 +29,12 @@ An illustration of the data collection process is shown below.
 
 \* The heart rate data was normalized for each user, longitude and latitude values were re-scaled to protect user privacy.
 
+Rating distributions throughout three stages of the study:
+![Ratings Distributions](./log/_static/Ratings_distributions.png)
+
+Distributions of emotional valence and arousal throughout three stages of user study:
+![Emotional Valence Arousal Distributions](./log/_static/Emo_distributions.png)
+
 ## Experiments
 We propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.
 Details about code, configs and settings of the experiments are shown in [`Experiments\`](/Experiments/).

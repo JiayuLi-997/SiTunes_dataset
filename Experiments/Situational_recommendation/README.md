@@ -59,7 +59,7 @@ We take interaction data with user IDs, item IDs, and item metadata. Interaction
 
 ### Baseline Models
 
-As a preliminary experiment on the situational recommendation with *SiTunes*, we select some existing context-aware models for experiments, In our study, we chose to evaluate a set of models, including Factorization Machines (FM), Wide & Deep, AutoInt, and Deep & Cross Network Version 2 (DCN V2). Wide & Deep and FM are selected as they represent classical and popular baseline approaches in the contextual recommendation. And AutoInt and DCN V2 represent recent advances by which we aim to assess the possibility of employing state-of-the-art approaches on *SiTunes*. In experiments, we adopted the popular RecBole framework to implement and evaluate all results.
+As a preliminary experiment on the situational recommendation with *SiTunes*, we select some existing context-aware models for experiments, In our study, we chose to evaluate a set of models, including Factorization Machines (FM) [1], Wide & Deep [2], AutoInt [3], and Deep & Cross Network Version 2 (DCN V2) [4]. Wide & Deep and FM are selected as they represent classical and popular baseline approaches in the contextual recommendation. And AutoInt and DCN V2 represent recent advances by which we aim to assess the possibility of employing state-of-the-art approaches on *SiTunes*. In experiments, we adopted the popular RecBole framework [5] to implement and evaluate all results.
 
 ### Experimental Settings
 
@@ -78,3 +78,16 @@ The experimental results presented in the referenced table offer compelling evid
 Comparing results in three settings, the superior performance of models in Setting 2 to Setting 1 illustrates the necessity of real-world data to better understand the impact of situational factors on user preferences, which confirms the need to involve a field study. Performance in Setting 3 is also worse than in Setting 2. The performance decrease may be caused by the distribution discrepancy between Stage 2 and Stage 3 with different backbone recommenders. Nevertheless, it is worth noting that they are not so comparable as the test sets are distinct.
 
 Furthermore, we observe no significant performance difference between the four models. The limited scale of our dataset may cause AutoInt and DCN V2 to not have outstanding performances compared with traditional models. However, these methods are all used for general context-aware recommendation, and we believe models designed explicitly for situational recommendation will lead to better performance in the future, suggesting that our dataset might not be sufficiently large to exploit the capabilities of advanced machine learning methods fully. We believe that a larger dataset with rich context and situational information could better support these methods and yield more insightful results.
+
+## References
+[1] Steffen Rendle. 2010. Factorization Machines. In 2010 IEEE International Conference on Data Mining. 995–1000. [https://doi.org/10.1109/ICDM.2010.127](https://doi.org/10.1109/ICDM.2010.127)
+
+[2] Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra, Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil, Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, and Hemal Shah. 2016. Wide & Deep Learning for Recommender Systems. In Proceedings of the 1st Workshop on Deep Learning for Recommender Systems (Boston, MA, USA) (DLRS 2016). Association for Computing Machinery, New York, NY, USA, 7–10. [https://doi.org/10.1145/2988450.2988454](https://doi.org/10.1145/2988450.2988454)
+
+[3] Weiping Song, Chence Shi, Zhiping Xiao, Zhijian Duan, Yewen Xu, Ming Zhang, and Jian Tang. 2019. AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks. In Proceedings of the 28th ACM International Conference on Information and Knowledge Management (Beijing, China) (CIKM ’19). Association for Computing Machinery, New York, NY, USA, 1161–1170. [https://doi.org/10.1145/3357384.3357925](https://doi.org/10.1145/3357384.3357925)
+
+[4] Ruoxi Wang, Rakesh Shivanna, Derek Cheng, Sagar Jain, Dong Lin, Lichan Hong, and Ed Chi. 2021. DCN V2: Improved Deep & Cross Network and Practical Lessons for Web-Scale Learning to Rank Systems. In Proceedings of the Web Conference 2021 (Ljubljana, Slovenia) (WWW ’21). Association for Computing Machinery, New York, NY, USA, 1785–1797. [https://doi.org/10.1145/3442381.3450078](https://doi.org/10.1145/3442381.3450078)
+
+[5] Wayne Xin Zhao, Shanlei Mu, Yupeng Hou, Zihan Lin, Yushuo Chen, Xingyu Pan, Kaiyuan Li, Yujie Lu, Hui Wang, Changxin Tian, Yingqian Min, Zhichao Feng, Xinyan Fan, Xu Chen, Pengfei Wang, Wendi Ji, Yaliang Li, Xiaoling Wang, and Ji-Rong Wen. 2021. RecBole: Towards a Unified, Comprehensive and Efficient Framework for Recommendation Algorithms. arXiv preprint [arXiv:2011.01731](https://arxiv.org/abs/2011.01731) [cs.IR]
+
+

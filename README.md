@@ -14,12 +14,20 @@ An illustration of the data collection process is shown below.
 
 ### Basic Statistics
 
-|         | #User | #Item | #Interaction | Phy. Signals | Psy. Signals | Rating | Psy. Feedback |
-|---------|-------|-------|--------------|:------------:|:------------:|:------:|:-------------:|
-| Stage 1 | 30    | 25    | 600          |              |       √      |    √   |       √       |
-| Stage 2 | 30    | 105   | 897          |       √      |       √      |    √   |       √       |
-| Stage 3 | 10    | 217   | 509          |       √      |       √      |    √   |       √       |
-| All     | 30    | 307   | 2,006        |       √      |       √      |    √   |       √       |
+|         | #User | #Item | #Interaction | Phy. Signals | Psy. Signals | Env. Data | Rating | Psy. Feedback |
+|---------|-------|-------|--------------|:------------:|:------------:|:---------:|:------:|:-------------:|
+| Stage 1 | 30    | 25    | 600          |              |              |           |   √    |       √       |
+| Stage 2 | 30    | 105   | 897          |       √      |       √      |     √     |   √    |       √       |
+| Stage 3 | 10    | 217   | 509          |       √      |       √      |     √     |   √    |       √       |
+| All     | 30    | 307   | 2,006        |       √      |       √      |     √     |   √    |       √       |
+
+- **Phy. Signals:** Includes physiological signals such as heart rate*, activity intensity, activity step, and activity type.
+- **Psy. Signals:** Refers to emotions recorded before music listening, measured in two dimensions (valence/arousal).
+- **Env. Data:** Environmental data including time of day, weather information (type, pressure, temperature, humidity), and location details (longitude*, latitude*, speed).
+- **Rating:** User ratings based on a five-point Likert scale.
+- **Psy. Feedback:** Emotional response after music listening, also measured in valence and arousal.
+
+\* The heart rate data was normalized for each user, longitude and latitude values were re-scaled to protect user privacy.
 
 ## Experiments
 We propose two tasks and corresponding baseline results on *SiTunes*: Situational music recommendation and psychological satisfaction as recommendation feedback in the resource paper.

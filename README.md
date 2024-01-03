@@ -98,3 +98,5 @@ Finally, Obj. + Sub. situation features achieve the best results on Stage 2, but
 The reason might be that the models are trained on Stage 2 data, and Obj. features are effective indicators for datasets with the same distribution as training set, but not as effective as Sub. features for out-of-distribution inference.
 
 More details about the experiment settings and result analysis are shown in [`Experiments\Psychological_satisfaction_prediction\`](/Experiments/Psychological_satisfaction_prediction).
+
+### Challenges in dataset collection
